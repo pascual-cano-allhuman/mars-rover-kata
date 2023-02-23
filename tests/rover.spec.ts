@@ -31,4 +31,10 @@ describe("Movement commands", () => {
 		const newPosition = moveForwardOrBackward(position, Direction.south, Command.forward);
 		expect(newPosition).toEqual({ x: 1, y: 0 });
 	});
+
+	it("goes to 1,3 when moving north from 1,2", () => {
+		const position = { x: 1, y: 2 } as Position;
+		const newPosition = moveForwardOrBackward(position, Direction.north, Command.forward);
+		expect(newPosition).toEqual({ x: 1, y: 3 });
+	});
 });

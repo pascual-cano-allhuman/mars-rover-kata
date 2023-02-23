@@ -44,11 +44,12 @@ export const getRoverFinalPosition = (position: Position, direction: Direction, 
 };
 
 export const moveForwardOrBackward = (position: Position, direction: Direction, command: Command): Position => {
+	const { x, y } = position;
 	switch (direction) {
 		case Direction.north:
-			return { x: 1, y: 2 };
+			return { x, y: y + 1 } as Position;
 		case Direction.south:
-			return { x: 1, y: 0 };
+			return { x, y: y - 1 } as Position;
 		default:
 			return position;
 	}
