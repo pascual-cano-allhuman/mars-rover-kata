@@ -48,16 +48,20 @@ export const moveForwardOrBackward = (position: Position, direction: Direction, 
 	const { x, y } = position;
 	switch (actualDirection) {
 		case Direction.north:
-			return { x, y: y + 1 } as Position;
+			return toPosition(x, y + 1);
 		case Direction.south:
-			return { x, y: y - 1 } as Position;
+			return toPosition(x, y - 1);
 		case Direction.west:
-			return { x: x - 1, y } as Position;
+			return toPosition(x - 1, y);
 		case Direction.east:
-			return { x: x + 1, y } as Position;
+			return toPosition(x + 1, y);
 		default:
 			return position;
 	}
+};
+
+const toPosition = (x: number, y: number): Position => {
+	return { x: (x + 5) % 5, y: (y + 5) % 5 } as Position;
 };
 
 const getOppositeDirection = (direction: Direction): Direction => {
