@@ -30,5 +30,19 @@ export const isThereObstacle = (position: Position): boolean => {
 };
 
 export const getRoverFinalPosition = (position: Position, direction: Direction, commands: Command[]): Position | null => {
+	let currentPosition = position;
+	let currentDirection = direction;
+	commands.forEach(command => {
+		switch (command) {
+			case Command.forward:
+			case Command.backward:
+				currentPosition = moveForwardOrBackward(currentPosition, currentDirection, command);
+				break;
+		}
+	});
+	return currentPosition;
+};
+
+export const moveForwardOrBackward = (position: Position, direction: Direction, command: Command): Position => {
 	return { x: 1, y: 2 };
 };
