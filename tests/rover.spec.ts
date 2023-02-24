@@ -80,3 +80,26 @@ describe("Moving backward", () => {
 		expect(newPosition).toEqual({ x: 2, y: 1 });
 	});
 });
+
+describe("Moving off the limits of the map", () => {
+	it("goes to 0,0 when moving north from 0,4", () => {
+		const position = { x: 0, y: 4 } as Position;
+		const newPosition = move(position, Direction.north, Command.forward);
+		expect(newPosition).toEqual({ x: 0, y: 0 });
+	});
+	it("goes to 0,4 when moving south from 0,0", () => {
+		const position = { x: 0, y: 0 } as Position;
+		const newPosition = move(position, Direction.south, Command.forward);
+		expect(newPosition).toEqual({ x: 0, y: 4 });
+	});
+	it("goes to 0,0 when moving east from 4,0", () => {
+		const position = { x: 4, y: 0 } as Position;
+		const newPosition = move(position, Direction.east, Command.forward);
+		expect(newPosition).toEqual({ x: 0, y: 0 });
+	});
+	it("goes to 4,0 when moving west from 0,0", () => {
+		const position = { x: 0, y: 0 } as Position;
+		const newPosition = move(position, Direction.west, Command.forward);
+		expect(newPosition).toEqual({ x: 4, y: 0 });
+	});
+});

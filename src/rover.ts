@@ -72,6 +72,11 @@ export const getOppositeDirection = (direction: Direction): Direction => {
 			return direction;
 	}
 };
-function asPosition(x: number, y: number): Position {
+
+const asPosition = (x: number, y: number): Position => {
+	if (y > 4) return { x, y: 0 } as Position;
+	if (y < 0) return { x, y: 4 } as Position;
+	if (x > 4) return { x: 0, y } as Position;
+	if (x < 0) return { x: 4, y } as Position;
 	return { x, y } as Position;
-}
+};
