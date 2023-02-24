@@ -42,7 +42,10 @@ export const move = (currentPosition: Position, direction: Direction, command: C
 	const { x, y } = currentPosition;
 	switch (direction) {
 		case Direction.north:
-			currentPosition = { x, y: y + 1 } as Position;
+			if (command === Command.forward)
+				currentPosition = { x, y: y + 1 } as Position;
+			if (command === Command.backward)
+				currentPosition = { x, y: y - 1 } as Position;
 			break;
 		case Direction.south:
 			currentPosition = { x, y: y - 1 } as Position;
