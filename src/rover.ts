@@ -38,14 +38,24 @@ export const getRoverFinalPosition = (position: Position, direction: Direction, 
 	return currentPosition;
 };
 
+function getPositionFromCommand(command: Command, currentPosition: Position) {
+	const { x, y } = currentPosition;
+	switch (command) {
+		case Command.forward:
+			return { x, y: y + 1 } as Position;
+		case Command.backward:
+			return { x, y: y - 1 } as Position;
+		default:
+			return currentPosition;
+	}
+
+}
+
 export const move = (currentPosition: Position, direction: Direction, command: Command) => {
 	const { x, y } = currentPosition;
 	switch (direction) {
 		case Direction.north:
-			if (command === Command.forward)
-				currentPosition = { x, y: y + 1 } as Position;
-			if (command === Command.backward)
-				currentPosition = { x, y: y - 1 } as Position;
+			currentPosition = getPositionFromCommand(command, currentPosition);
 			break;
 		case Direction.south:
 			currentPosition = { x, y: y - 1 } as Position;
