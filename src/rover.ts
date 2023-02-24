@@ -38,15 +38,37 @@ export const getRoverFinalPosition = (position: Position, direction: Direction, 
 	return currentPosition;
 };
 
-export const move = (currentPosition: Position, direction: Direction, command: Command) => {
+export const move = (currentPosition: Position, direction: Direction, command: Command): Position => {
 	const { x, y } = currentPosition;
-	switch (direction) {
+	const actualDirection = command === Command.backward ? getOppositeDirection(direction) : direction;
+	switch (actualDirection) {
 		case Direction.north:
 			currentPosition = { x, y: y + 1 } as Position;
 			break;
 		case Direction.south:
 			currentPosition = { x, y: y - 1 } as Position;
 			break;
+		case Direction.east:
+			currentPosition = { x: x + 1, y } as Position;
+			break;
+		case Direction.west:
+			currentPosition = { x: x - 1, y } as Position;
+			break;
 	}
 	return currentPosition;
+};
+
+export const getOppositeDirection = (direction: Direction): Direction => {
+	switch (direction) {
+		case Direction.north:
+			return Direction.south;
+		case Direction.south:
+			return Direction.north;
+		case Direction.east:
+			return Direction.west;
+		case Direction.west:
+			return Direction.east;
+		default:
+			return direction;
+	}
 };
