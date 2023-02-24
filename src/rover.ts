@@ -43,16 +43,16 @@ export const move = (currentPosition: Position, direction: Direction, command: C
 	const actualDirection = command === Command.backward ? getOppositeDirection(direction) : direction;
 	switch (actualDirection) {
 		case Direction.north:
-			currentPosition = { x, y: y + 1 } as Position;
+			currentPosition = asPosition(x, y + 1);
 			break;
 		case Direction.south:
-			currentPosition = { x, y: y - 1 } as Position;
+			currentPosition = asPosition(x, y - 1);
 			break;
 		case Direction.east:
-			currentPosition = { x: x + 1, y } as Position;
+			currentPosition = asPosition(x + 1, y);
 			break;
 		case Direction.west:
-			currentPosition = { x: x - 1, y } as Position;
+			currentPosition = asPosition(x - 1, y);
 			break;
 	}
 	return currentPosition;
@@ -72,3 +72,6 @@ export const getOppositeDirection = (direction: Direction): Direction => {
 			return direction;
 	}
 };
+function asPosition(x: number, y: number): Position {
+	return { x, y } as Position;
+}
