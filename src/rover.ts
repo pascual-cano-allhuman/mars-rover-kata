@@ -80,3 +80,18 @@ const asPosition = (x: number, y: number): Position => {
 	if (x < 0) return { x: 4, y } as Position;
 	return { x, y } as Position;
 };
+
+export const turn = (direction: Direction, command: Command): Direction => {
+	switch (direction) {
+		case Direction.north:
+			return command === Command.left ? Direction.west : Direction.east;
+		case Direction.south:
+			return command === Command.left ? Direction.east : Direction.west;
+		case Direction.east:
+			return command === Command.left ? Direction.north : Direction.south;
+		case Direction.west:
+			return command === Command.left ? Direction.south : Direction.north;
+		default:
+			return direction;
+	}
+};

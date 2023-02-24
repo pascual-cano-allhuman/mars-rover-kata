@@ -1,4 +1,4 @@
-import { getRoverFinalPosition, move, Position, Direction, Command } from "../src/rover";
+import { getRoverFinalPosition, move, turn, Position, Direction, Command } from "../src/rover";
 import * as Rover from "../src/rover";
 
 describe("Sequence of commands", () => {
@@ -101,5 +101,28 @@ describe("Moving off the limits of the map", () => {
 		const position = { x: 0, y: 0 } as Position;
 		const newPosition = move(position, Direction.west, Command.forward);
 		expect(newPosition).toEqual({ x: 4, y: 0 });
+	});
+});
+
+describe("Turning left", () => {
+	it("is headed west after turning left from north", () => {
+		const direction = Direction.north;
+		const newDirection = turn(direction, Command.left);
+		expect(newDirection).toEqual(Direction.west);
+	});
+	it("is headed north after turning left from east", () => {
+		const direction = Direction.east;
+		const newDirection = turn(direction, Command.left);
+		expect(newDirection).toEqual(Direction.north);
+	});
+	it("is headed east after turning left from south", () => {
+		const direction = Direction.south;
+		const newDirection = turn(direction, Command.left);
+		expect(newDirection).toEqual(Direction.east);
+	});
+	it("is headed south after turning left from west", () => {
+		const direction = Direction.west;
+		const newDirection = turn(direction, Command.left);
+		expect(newDirection).toEqual(Direction.south);
 	});
 });
