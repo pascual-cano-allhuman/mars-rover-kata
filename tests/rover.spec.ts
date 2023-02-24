@@ -1,5 +1,5 @@
-import { getRoverFinalPosition, move, Position, Direction, Command } from "../src/rover";
 import * as Rover from "../src/rover";
+import { Command, Direction, getRoverFinalPosition, move, Position } from "../src/rover";
 
 describe("Sequence of commands", () => {
 	it("goes to 1,2 when moving north once from 1,1", () => {
@@ -44,5 +44,15 @@ describe("Move commands", () => {
 		const direction = Direction.south;
 		const newPosition = move(position, direction, Command.forward);
 		expect(newPosition).toEqual({ x: 1, y: 0 });
+	});
+	it("goes to 2,1 when moving east from 1,1", () => {
+		const direction = Direction.east;
+		const newPosition = move(position, direction, Command.forward);
+		expect(newPosition).toEqual({ x: 2, y: 1 });
+	});
+	it("goes to 0,1 when moving west from 1,1", () => {
+		const direction = Direction.west;
+		const newPosition = move(position, direction, Command.forward);
+		expect(newPosition).toEqual({ x: 0, y: 1 });
 	});
 });

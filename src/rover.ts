@@ -47,6 +47,12 @@ export const move = (currentPosition: Position, direction: Direction, command: C
 		case Direction.south:
 			currentPosition = { x, y: y - 1 } as Position;
 			break;
+		case Direction.east:
+			currentPosition = { x: x + 1, y } as Position;
+			break;
+		case Direction.west:
+			currentPosition = { x: x - 1, y } as Position;
+			break;
 	}
 	return currentPosition;
 };
