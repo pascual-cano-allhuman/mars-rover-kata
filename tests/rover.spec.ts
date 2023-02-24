@@ -56,4 +56,9 @@ describe("Move commands", () => {
 		const newPosition = move(position, Direction.north, Command.backward);
 		expect(newPosition).toEqual({ x: 1, y: 0 });
 	});
+
+	it.skip("goes to 1,2 when moving backward to south from 1,1", () => {
+		const newPosition = move(position, Direction.south, Command.backward);
+		expect(newPosition).toEqual({ x: 1, y: 2 });
+	});
 });
